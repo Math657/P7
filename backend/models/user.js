@@ -16,7 +16,7 @@ const Sequelize = require('sequelize')
 
 
 module.exports = function(sequelize) {
-    const userModel = sequelize.define("User", {
+    const userModel = sequelize.define("Users", {
         email: {
             type: Sequelize.STRING,
             allowNull: false,
@@ -25,7 +25,15 @@ module.exports = function(sequelize) {
         password: {
             type: Sequelize.STRING,
             allNull: false
-        } 
+        },
+         nom: {
+             type: Sequelize.STRING,
+             allowNull: false
+         },
+         prenom: {
+             type: Sequelize.STRING,
+             allowNull: false
+         }
     })
     return userModel;
 }

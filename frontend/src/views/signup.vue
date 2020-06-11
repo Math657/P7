@@ -1,17 +1,17 @@
 <template>
   <div class="signup">
-    <loginPage msg="Créez un compte" connect="S'inscrire"/>
+    <signupPage/>
   </div>
 </template>
 
 <script>
 
-import loginPage from '@/components/loginPage.vue'
+import signupPage from '@/components/signupPage.vue'
 
 export default {
   name: 'signup',
   components: {
-    loginPage
+    signupPage
   }
 }
 </script>
