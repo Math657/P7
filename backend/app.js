@@ -5,14 +5,11 @@ const Sequelize = require('sequelize')
 const userRoutes = require('./routes/user')
 require('dotenv').config()
 
-const path = require('path')
+// const path = require('path')
 
-const sequelize = new Sequelize('groupomania', 'admin', 'admin', {
-  host: 'localhost',
-  dialect:  'mysql'
-})
+const db = require('./config/database')
 
-sequelize
+db
   .authenticate()
   .then(() => {
     console.log('Connection has been established successfully.')

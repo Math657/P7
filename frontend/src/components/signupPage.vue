@@ -37,6 +37,7 @@ export default {
                 if (request.readyState == XMLHttpRequest.DONE && request.status == 201) {
                      const response = JSON.parse(this.responseText)
                      console.log(response)
+                     //this.$router.push("/home")
                 }
             }
             request.open("POST", "http://localhost:3000/api/signup")
