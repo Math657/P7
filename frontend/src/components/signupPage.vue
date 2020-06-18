@@ -19,30 +19,32 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: 'signupPage',
     data() {
-        const formData = {
+        return {
             email: "",
             lastname: "",
             firstname: "",
             password: ""
-        }
-        return formData   
+        } 
     },
     methods: {
         signup() {
-            var request = new XMLHttpRequest()
-            request.onreadystatechange = () => {
-                if (request.readyState == XMLHttpRequest.DONE && request.status == 201) {
-                     const response = JSON.parse(this.responseText)
-                     console.log(response)
-                     //this.$router.push("/home")
-                }
-            }
-            request.open("POST", "http://localhost:3000/api/signup")
-            request.setRequestHeader("Content-Type", "application/json")
-            request.send(this.formData)
+            axios.post('http://localhost:3000/api/auth/signup', {
+                email: this.email,
+                lastname: this.lastname,
+                firstname: this.firstname,
+                password: this.password
+            })
+            .then(function (response) {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="login">
     <h1>{{ msg }}</h1>
      <form>
         <label for="email">Adresse email :</label>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'loginPage',
   props: {
@@ -19,24 +21,23 @@ export default {
     connect: String
   },
   data() {
-    const formData = {
+    return {
       email: "",
       password: ""
-    }
-    return formData    
+    }   
   },
   methods: {
     login() {
-      var request = new XMLHttpRequest()
-            request.onreadystatechange = () => {
-                if (request.readyState == XMLHttpRequest.DONE && request.status == 201) {
-                     const response = JSON.parse(this.responseText)
-                     console.log(response)
-                }
-            }
-            request.open("POST", "http://localhost:3000/api/login")
-            request.setRequestHeader("Content-Type", "application/json")
-            request.send(this.formData)
+      axios.post('http://localhost:3000/api/auth/login', {
+        email: this.email,
+        password: this.password
+      })
+      .then(function (response) {
+          console.log(response)
+      })
+      .catch(function (error) {
+          console.log(error)
+      })
     }
   }
 }

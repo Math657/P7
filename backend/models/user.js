@@ -37,6 +37,7 @@ const user = db.define("Users", {
     //  }
 }, {
     freezeTableName: true,
+    timestamps: false
     // instanceMethods: {
     //     generateHash(password) {
     //         return bcrypt.hash(password, bcrypt.genSaltSync(8));
@@ -45,7 +46,6 @@ const user = db.define("Users", {
     //         return bcrypt.compare(password, this.password);
     //     }
     // },
-    timestamps: false
 })
 
 module.exports = user
