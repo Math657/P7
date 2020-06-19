@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <img alt="Groupomana logo" src="./assets/icon-above-font.png">
-
-      <router-link to="/">Connexion</router-link> |
-      <router-link to="/signup">Créer un compte</router-link>
-    </div>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
+
+<script>
+export default {
+  
+}
+</script>
 
 <style lang="scss">
 #app {

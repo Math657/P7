@@ -1,8 +1,9 @@
 <template>
   <div id="app">
+    
     <div id="nav">
-      <img alt="Groupomana logo" src="./assets/icon-above-font.png">
-      <router-link to="/">Connexion</router-link> |
+      <!-- <img alt="Groupomana logo" src="../assets/icon-above-font.png"> -->
+      <router-link class="mr-3" to="/">Connexion</router-link>
       <router-link to="/signup">Créer un compte</router-link>
     </div>
   </div>
@@ -10,7 +11,7 @@
 
 <script>
 export default {
-    name: 'nav'
+    name: 'navLogin'
 }
 </script>
 
@@ -23,24 +24,28 @@ export default {
   color: #2c3e50;
 }
 
+// img {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   max-width: 10%;
+// }
+
 #nav {
   padding: 30px;
+  font-size: 1.2em;
 
   a {
     font-weight: bold;
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #0069D9;
     }
   }
+}
 
-  img {
-    max-width: 20%;
-  }
-
-  // display: flex;
-  // flex-direction: row;
-  
+#connect {
+    margin-right: 10px;
 }
 </style>
