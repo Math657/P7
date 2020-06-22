@@ -1,18 +1,18 @@
 <template>
-  <div class="home">
+  <div class="profil">
       <headerApp></headerApp>
-      <feed></feed>
+      <profilDetails></profilDetails>
   </div>
 </template>
 
 <script>
-import feed from '@/components/feed.vue'
+import profilDetails from '@/components/profilDetails.vue'
 import headerApp from '@/components/headerApp.vue'
 
 export default {
-  name: 'home',
+  name: 'profil',
   components: {
-    feed,
+    profilDetails,
     headerApp
   }
 }

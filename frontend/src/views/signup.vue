@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import navLogin from '../components/navLogin'
 
 export default {
@@ -33,6 +32,7 @@ export default {
     data() {
         return {
             email: null,
+            reg: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             lastname: null,
             firstname: null,
             password: null
@@ -40,10 +40,8 @@ export default {
     },
     methods: {
         checkForm: function (e) {
-        if (this.email && this.lastname && this.firstname && this.password) {
-            return true
-        }
-        if (!this.validEmail(this.email)) {
+        
+        if (!this.reg.test(this.email)) {
             console.log('Entrez un email valide!')
             return false
         }
@@ -59,23 +57,25 @@ export default {
             console.log('Mot de passe requis!')
             return false
         }
+        if (this.email && this.lastname && this.firstname && this.password) {
+            return true
+        }
         e.preventDefault()   
         },
-        validEmail: function (email) {
-        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    },
         signup() {  
+            let self = this
             if (this.checkForm()) {
-            axios.post('http://localhost:3000/api/auth/signup', {
+            this.$http.post('http://localhost:3000/api/auth/signup', {
                 email: this.email,
                 lastname: this.lastname,
                 firstname: this.firstname,
                 password: this.password
             })
             .then(function (response) {
+                localStorage.setItem('userID', JSON.stringify(response.data.userId))
+                localStorage.setItem('jwt', JSON.stringify(response.data.token))
                 console.log(response)
-                this.$router.push('/home')
+                self.$router.push('/home')
             })
             .catch(function (error) {
                 console.log(error)

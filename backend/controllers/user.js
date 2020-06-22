@@ -40,6 +40,7 @@ exports.login = (req, res) => {
                 }
                 else {
                     res.status(200).json({
+                        userId: user.id,
                         token: jwt.sign(
                             {userId: user.id},
                             process.env.SECRET_KEY,
@@ -52,4 +53,10 @@ exports.login = (req, res) => {
         }
     })
     .catch(error => res.status(500).json({error}))
+}
+
+exports.getOneUser = (req, res) => {
+    user.findOne({ where: {id: user.id}})
+    .then((user) => res.status(200).json({user}))
+    .catch((error) => res.status(503).json({error}))
 }

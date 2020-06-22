@@ -11,7 +11,7 @@
             <label for="password">Mot de passe :</label>
             <input type="password" id="password" v-model="password" class="form-control" required>
 
-            <button class="btn btn-primary mt-3" v-on:click.prevent="login()" id="btn_submit">Connexion</button>
+            <button class="btn btn-primary my-3" v-on:click.prevent="login()" id="btn_submit">Connexion</button>
 
         </form>
         <img alt="Groupomana logo" src="../assets/icon-above-font.png">
@@ -19,31 +19,41 @@
 </template>
 
 <script>
-import axios from 'axios'
 import navLogin from '../components/navLogin'
 
 export default {
     name: 'login',
     data() {
         return {
-        email: "",
-        password: ""
+            email: "",
+            password: ""
         }   
     },
     methods: {
         login() {
-        axios.post('http://localhost:3000/api/auth/login', {
-            email: this.email,
-            password: this.password
-        })
-        .then(function (response) {
-            console.log(response)
-            this.$router.push('/home')
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
+            if (this.email != "" && this.password !="") {
+    
+                let self = this
+                this.$http.post('http://localhost:3000/api/auth/login', {
+                email: this.email,
+                password: this.password
+                })
+                .then(function (response) {
+                    localStorage.setItem('userID', JSON.stringify(response.data.userId))
+                    localStorage.setItem('jwt', JSON.stringify(response.data.token))
+                    console.log(response)
+                //  this.$emit('isAuthenticated')
+                    self.$router.push('/home')
+                })
+                .catch(function (error) {
+                    console.log(error)
+                 })
+            }
+            else {
+                console.log('Vous devez entrer un nom d\'utilisateur et/ou mot de passe correct!')
+            }
         }
+           
     },
     components: {
         navLogin

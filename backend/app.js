@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
 const userRoutes = require('./routes/user')
 const articlesRoutes = require('./routes/articles')
-var cors = require('cors')
+// var cors = require('cors')
 require('dotenv').config()
 
 // const path = require('path')
@@ -20,7 +20,14 @@ db
     console.error('Unable to connect to the database:', err)
   })
 
-app.use(cors())
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, Bearer')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+    next()
+    })
+
+// app.use(cors())
 
 app.use(bodyParser.json())
 
