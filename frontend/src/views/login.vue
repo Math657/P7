@@ -32,7 +32,6 @@ export default {
     methods: {
         login() {
             if (this.email != "" && this.password !="") {
-    
                 let self = this
                 this.$http.post('http://localhost:3000/api/auth/login', {
                 email: this.email,
@@ -40,9 +39,8 @@ export default {
                 })
                 .then(function (response) {
                     localStorage.setItem('userID', JSON.stringify(response.data.userId))
-                    localStorage.setItem('jwt', JSON.stringify(response.data.token))
+                    // localStorage.setItem('jwt', JSON.stringify(response.data.token))
                     console.log(response)
-                //  this.$emit('isAuthenticated')
                     self.$router.push('/home')
                 })
                 .catch(function (error) {

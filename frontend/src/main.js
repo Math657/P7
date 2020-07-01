@@ -6,7 +6,13 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Axios from 'axios'
 
-Vue.prototype.$http = Axios;
+// Axios.defaults.withCredentials = true
+Vue.prototype.$http = Axios
+
+// config de base axios avec localhost 3000 / ...
+// path '/' lors de création cookie
+
+
 
 Vue.config.productionTip = false
 

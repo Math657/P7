@@ -1,36 +1,31 @@
 const Sequelize = require('sequelize')
 const db = require('../config/database')
 
-const article = db.define("articles", {
+const comment = db.define("comments", {
     article_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    comment_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    title: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-    },
-    content: {
-        type: Sequelize.STRING,
+    author_id: {
+        type: Sequelize.INTEGER,
         allowNull: false
     },
-    author_id: {
+    content: {
         type: Sequelize.STRING,
         allowNull: false
     },
     createdAt: {
         type: Sequelize.DATE,
         allowNull: false
-    },
-    comments: {
-        type: Sequelize.STRING,
-        allowNull: true
     }
 },  {
     freezeTableName: true,
     timestamps: false
 })
 
-module.exports = article
+module.exports = comment

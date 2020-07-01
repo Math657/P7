@@ -1,19 +1,19 @@
 <template>
-    <div class="page-header">
-        <div class="btns-head">
+    <div class="header p-3">   
+        <router-link class="home" to="/home"><button class="btn btn-info">Accueil</button></router-link>    
         <!-- <img alt="Groupomana logo" src="../assets/icon-above-font.png"> -->
+        <div class="btns-right">
             <router-link to="/profil">
-                <button class="btn btn-primary">
+                <button class="btn btn-info">
                     Mon profil
                 </button>
             </router-link>
-        
-                <button class="btn btn-danger mr-5" @click.prevent="logOut()">
-                    Se deconnecter
-                </button>
+    
+            <button class="btn btn-danger ml-3" @click.prevent="logOut()">
+                Se deconnecter
+            </button>
+
         </div>
-    <hr class="solid">
-            
     </div>
 </template>
 
@@ -22,7 +22,8 @@ export default {
     name: 'headerApp',
     methods: {
         logOut(){
-
+            localStorage.clear()
+            this.$router.push('/')
         }
     }
 }
@@ -30,28 +31,14 @@ export default {
 
 <style scoped lang="scss">
 
-.page-header {
+.header {
     height: 10%; 
     background-color: rgb(58, 77, 90);
-}
-
-.btns-head {
     display: flex;
-    justify-content: flex-end;
 }
 
-hr.solid {
-    border-top: 1px rounded rgb(212, 212, 212);
+.home {
+    margin-right: auto;
 }
-
-.btn {
-    margin-left: 1em;
-    margin-top: 1em;
-}
-
-// hr.solid {
-//   border-top: 3px solid #bbb;
-// }
-
 
 </style>

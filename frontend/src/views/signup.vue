@@ -73,7 +73,7 @@ export default {
             })
             .then(function (response) {
                 localStorage.setItem('userID', JSON.stringify(response.data.userId))
-                localStorage.setItem('jwt', JSON.stringify(response.data.token))
+                // localStorage.setItem('jwt', JSON.stringify(response.data.token))
                 console.log(response)
                 self.$router.push('/home')
             })

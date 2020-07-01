@@ -6,13 +6,19 @@
                     {{ articleUnique.content }}
                 </p>
                 <p class="details mt-4">
-                    Posté par <span class="author">{{articleUnique.author}}</span> le <span class="date">{{articleUnique.createdAt}}</span>
+                    Posté par <span class="author">{{articleUnique.author_id}}</span>, le <span class="date">{{articleUnique.createdAt}}</span>
                 </p>
+            </div>
+
+            <div class="card">
+                <comments></comments>
             </div>
     </div>
 </template>
 
 <script>
+import comments from './comments.vue'
+
 export default {
     name: 'articleContent',
     data(){
@@ -29,6 +35,9 @@ export default {
             .catch(function (error) {
                   console.log(error)
             })                
+    },
+    components: {
+        comments
     }
 }
 </script>
@@ -41,6 +50,10 @@ export default {
 }
 .details {
     text-align: right;
+}
+
+.container {
+    font-size: 20px;
 }
 
 </style>

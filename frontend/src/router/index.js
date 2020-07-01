@@ -9,22 +9,17 @@ import submitArticle from '../views/submitArticle'
 
 Vue.use(VueRouter)
 
+
   const routes = [
   {
     path: '/',
     name: 'login',
     component: login,
-    meta: {
-        guest: true
-    }
   },
   {
     path: '/signup',
     name: 'signup',
     component: signup,
-    meta: {
-        guest: true
-    }
   },
   {
     path: '/home',
@@ -65,9 +60,22 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEat((to, from, next) => {
-//     if ((to.name !== 'login' || to.name !== 'signup') && !isAuthenticated) next({ name: 'login' })
-//     else next()
+// router.beforeEach((to, from, next) => {
+//     if (to.matched.some(record => record.meta.requiresAuth)) {
+//       if ($store.state.isLogged) {
+//           next()
+//       }
+//       if (!$store.state.isLogged) {
+//         next({
+//           path: '/',
+//           query: { redirect: to.fullPath }
+//         })
+//       } else {
+//         next()
+//       }
+//     } else {
+//       next()
+//     }
 // })
 
 export default router
