@@ -22,7 +22,11 @@ const article = db.define("articles", {
     },
     createdAt: {
         type: Sequelize.DATE,
+        // get: function() {
+        //     return moment.utc(this.getDataValue('createdAt')).format('YYYY-MM-DD')
+        // },
         allowNull: false
+        
     },
     comments: {
         type: Sequelize.STRING,

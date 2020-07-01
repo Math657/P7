@@ -23,6 +23,8 @@ export default {
     methods: {
         logOut(){
             localStorage.clear()
+            sessionStorage.clear()
+            this.$store.dispatch('logOut')
             this.$router.push('/')
         }
     }

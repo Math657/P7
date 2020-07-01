@@ -6,6 +6,7 @@ import home from '../views/home.vue'
 import articleUnique from '../views/articleUnique'
 import profil from '../views/profil'
 import submitArticle from '../views/submitArticle'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -60,22 +61,18 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//     if (to.matched.some(record => record.meta.requiresAuth)) {
-//       if ($store.state.isLogged) {
-//           next()
-//       }
-//       if (!$store.state.isLogged) {
-//         next({
-//           path: '/',
-//           query: { redirect: to.fullPath }
-//         })
-//       } else {
-//         next()
-//       }
-//     } else {
-//       next()
-//     }
-// })
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requireAuth)) {
+        if (store.state.isLogged) {
+            next()
+        }
+        else if (!store.state.isLogged) {
+            next('/')
+        }   
+    } 
+    else {
+        next()
+    }
+})
 
 export default router

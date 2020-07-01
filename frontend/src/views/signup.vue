@@ -63,7 +63,6 @@ export default {
         e.preventDefault()   
         },
         signup() {  
-            let self = this
             if (this.checkForm()) {
             this.$http.post('http://localhost:3000/api/auth/signup', {
                 email: this.email,
@@ -71,13 +70,11 @@ export default {
                 firstname: this.firstname,
                 password: this.password
             })
-            .then(function (response) {
+            .then((response) => {
                 localStorage.setItem('userID', JSON.stringify(response.data.userId))
-                // localStorage.setItem('jwt', JSON.stringify(response.data.token))
-                console.log(response)
-                self.$router.push('/home')
+                this.$store.dispatch('checkIfLogged')
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error)
             })}
         }

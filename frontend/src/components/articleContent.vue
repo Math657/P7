@@ -6,7 +6,9 @@
                     {{ articleUnique.content }}
                 </p>
                 <p class="details mt-4">
-                    Posté par <span class="author">{{articleUnique.author_id}}</span>, le <span class="date">{{articleUnique.createdAt}}</span>
+                    Posté par <span class="author">{{articleUnique.author_id}}</span>, le 
+                    <span class="date">{{moment(articleUnique.createdAt).format("Do MMMM YYYY")}} à </span>
+                    <span class="date">{{moment(articleUnique.createdAt).format("LT")}}h</span>
                 </p>
             </div>
 

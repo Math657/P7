@@ -30,6 +30,8 @@ export default {
             .then(response => {
                 console.log(response)
                 localStorage.clear()
+                sessionStorage.clear()
+                this.$store.dispatch('logOut')
                 this.$router.push('/')
             })
             .catch(error => {

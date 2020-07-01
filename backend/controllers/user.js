@@ -103,7 +103,9 @@ exports.deleteUser = (req, res) => {
                      password: '',
                      status: 'Deleted' },
                      { where: { id: userFound.id } })
-        .then(() => res.status(201).json({message: 'Utilisateur supprimé!'}))
+        .then(() => 
+        // res.clearCookie('token', token),
+        res.status(201).json({message: 'Utilisateur supprimé!'}))
         .catch((error) => res.status(503).json({error}))
     })
     .catch((error) => res.status(503).json({error}))

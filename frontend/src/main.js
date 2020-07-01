@@ -5,14 +5,15 @@ import store from './store'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Axios from 'axios'
+import moment from 'moment'
 
-// Axios.defaults.withCredentials = true
+
+
+Axios.defaults.withCredentials = true
 Vue.prototype.$http = Axios
 
-// config de base axios avec localhost 3000 / ...
-// path '/' lors de création cookie
-
-
+Vue.prototype.moment = moment
+moment.locale('fr')
 
 Vue.config.productionTip = false
 
