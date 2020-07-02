@@ -27,7 +27,6 @@ CREATE TABLE Articles (
     content TEXT NOT NULL,
     author_id SMALLINT UNSIGNED NOT NULL,
     createdAt DATETIME default CURRENT_TIMESTAMP,
-    comments TEXT,
     PRIMARY KEY (article_id),
     CONSTRAINT fk_author_article FOREIGN KEY (author_id)
         REFERENCES Users (id)

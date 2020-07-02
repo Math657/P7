@@ -26,8 +26,7 @@ export default {
     name: 'feed',
     data(){
         return {
-            allArticles: [],
-            date: ''
+            allArticles: []
         }
     },
     created(){
@@ -72,7 +71,7 @@ h2 {
 }
 
 a {
-    
+
 }
 
 </style>

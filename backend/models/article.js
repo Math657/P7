@@ -27,10 +27,6 @@ const article = db.define("articles", {
         // },
         allowNull: false
         
-    },
-    comments: {
-        type: Sequelize.STRING,
-        allowNull: true
     }
 },  {
     freezeTableName: true,

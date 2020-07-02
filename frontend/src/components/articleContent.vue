@@ -13,7 +13,7 @@
             </div>
 
             <div class="card">
-                <comments></comments>
+                <comments :artTitle="this.title"></comments>
             </div>
     </div>
 </template>
