@@ -6,8 +6,7 @@ const articlesCtrl = require('../controllers/articles')
 
 router.get('/home', auth, articlesCtrl.getAllArticles)
 router.get('/home/:title', auth, articlesCtrl.getOneArticle)
+router.get('/userPosts/:id', auth, articlesCtrl.getUserArticles)
 router.post('/submitArticle/:id', auth, articlesCtrl.createArticle)
-
-//router.delete('home/:title', articlesCtrl.deleteArticle)
 
 module.exports = router

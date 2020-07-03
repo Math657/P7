@@ -36,9 +36,5 @@ export default {
   img {
     max-width: 20%;
   }
-
-  // display: flex;
-  // flex-direction: row;
-  
 }
 </style>

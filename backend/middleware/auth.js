@@ -11,9 +11,6 @@ module.exports = (req, res, next) => {
                 throw 'User ID non valable !'
             } 
             else {   
-                //  req.data = {
-                //      userID: req.body.userId
-                //  }
                 next()
             }
         }

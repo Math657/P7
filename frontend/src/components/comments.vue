@@ -5,8 +5,9 @@
 
                 <ul>
                     <li class="com_list" :key="i" v-for="(comment, i) in allComments">
-                        <div>    
-                            <h6 class="infos_com"><span class="author">{{ comment.author_id}}</span>, <span class="date">{{moment(comment.createdAt).format("Do MMMM YYYY")}} à </span>
+                        <div class="card bg-light text-dark px-3 pb-2 pt-3">    
+                            <h6 class="infos_com"><router-link :to="`/user-profil/${comment.author_id}`" data-toggle="tooltip" title="Voir le profil"><span class="author">{{ comment.author_name}}</span></router-link>, 
+                            <span class="date">{{moment(comment.createdAt).format("Do MMMM YYYY")}} à </span>
                             <span class="date">{{moment(comment.createdAt).format("LT")}}h</span>
                             </h6>
                             <h5>{{ comment.content }}</h5>  
@@ -17,11 +18,11 @@
         </div>
 
 
-        <button v-on:click="toggleForm()" class="btn btn-primary my-4" v-if="!revele && !published">Ecrire un commentaire</button>
+        <button v-on:click="toggleForm()" class="btn btn-primary mb-4 mt-4" v-if="!revele && !published">Commenter</button>
 
         <div class="form-group-mb-5" v-if="revele">
-            <label for="comment">Votre commentaire</label>
-            <textarea id="comment" class="form-control mb-5" v-model="content"></textarea>
+            <label for="comment" class="mt-2">Votre commentaire</label>
+            <textarea id="comment" class="form-control mb-4" v-model="content"></textarea>
 
             <button v-on:click="submitComment()" class="btn btn-primary mb-4">Publier mon commentaire</button>
         </div>
@@ -49,7 +50,6 @@ export default {
     mounted(){
         this.$http.get(`http://localhost:3000/api/auth/comments/${this.artTitle}`)
         .then(response => {
-            console.log(response.data.comment)
             for (let com of response.data.comment) {          
                         this.allComments.push(com)   
                     }
@@ -99,6 +99,16 @@ ul {
 
 .author {
     font-weight: bold;
+    font-size: 16px;
+}
+
+.date {
+    font-style: italic;
+}
+
+.card {
+    border-radius: 10px;
+    // border: 1px;
 }
 
 </style>

@@ -2,7 +2,6 @@
   <div id="app">
     
     <div id="nav">
-      <!-- <img alt="Groupomana logo" src="../assets/icon-above-font.png"> -->
       <router-link class="mr-3" to="/">Connexion</router-link>
       <router-link to="/signup">Créer un compte</router-link>
     </div>
@@ -23,13 +22,6 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
-// img {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   max-width: 10%;
-// }
 
 #nav {
   padding: 30px;

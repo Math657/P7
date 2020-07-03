@@ -6,7 +6,9 @@ import home from '../views/home.vue'
 import articleUnique from '../views/articleUnique'
 import profil from '../views/profil'
 import submitArticle from '../views/submitArticle'
+import userProfil from '../views/userProfil'
 import store from '../store'
+
 
 Vue.use(VueRouter)
 
@@ -36,7 +38,7 @@ Vue.use(VueRouter)
     component: articleUnique,
     meta: {
         requireAuth: true
-    },
+    }
   },
   {
     path: '/profil',
@@ -44,15 +46,23 @@ Vue.use(VueRouter)
     component: profil,
     meta: {
         requireAuth: true
-    },
+    }
   },
   {
-    path: '/submitArticle',
+    path: '/submit-article',
     name: 'submitArticle',
     component: submitArticle,
     meta: {
         requireAuth: true
-    },
+    } 
+  },
+  {
+    path: '/user-profil/:id',
+    name: 'userProfil',
+    component: userProfil,
+    meta: {
+        requireAuth: true
+    }
   }
 ]
 

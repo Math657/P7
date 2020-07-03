@@ -15,6 +15,10 @@ const comment = db.define("comments", {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    author_name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     content: {
         type: Sequelize.STRING,
         allowNull: false

@@ -1,7 +1,7 @@
 <template>
     <div class="header p-3">   
         <router-link class="home" to="/home"><button class="btn btn-info">Accueil</button></router-link>    
-        <!-- <img alt="Groupomana logo" src="../assets/icon-above-font.png"> -->
+        <img alt="Groupomana logo" src="../assets/icon-white-cropped.png" class="home">
         <div class="btns-right">
             <router-link to="/profil">
                 <button class="btn btn-info">
@@ -10,7 +10,7 @@
             </router-link>
     
             <button class="btn btn-danger ml-3" @click.prevent="logOut()">
-                Se deconnecter
+                Se déconnecter
             </button>
 
         </div>
@@ -41,6 +41,18 @@ export default {
 
 .home {
     margin-right: auto;
+}
+
+img {
+    height: 10%;
+    width: 13em;
+    margin-top: 2px;
+}
+
+@media only screen and (max-width: 640px) {
+  img {
+    display: none;
+  }
 }
 
 </style>

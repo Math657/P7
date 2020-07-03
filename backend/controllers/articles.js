@@ -1,13 +1,14 @@
 const article = require('../models/article')
 const user = require('../models/user')
 
-exports.getAllArticles = (req, res) => {
+exports.getAllArticles = (res) => {
     article.findAll({order: [
-        ['article_id', 'DESC']
+        ['createdAt', 'DESC']
       ]})
     .then((articles) => res.status(200).json({articles}))
     .catch((error) => res.status(503).json({error}))
 }
+
 
 exports.getOneArticle = (req, res) => {
     article.findOne({ where: {title: req.params.title}})
@@ -28,6 +29,7 @@ exports.createArticle = (req, res) => {
                     title: req.body.title,
                     content: req.body.content,
                     author_id: user.id,
+                    author_name: user.firstname + ' ' + user.lastname,
                     createdAt: Date.now()
                 })
                 .then(() => res.status(201).json({message: 'Article soumis!'}))
@@ -37,4 +39,15 @@ exports.createArticle = (req, res) => {
         }       
     })
     .catch(error => res.status(500).json({error}))
+}
+
+exports.getUserArticles = (req, res) => {
+    article.findAll({ 
+        where : { author_id: req.params.id },
+        order: [
+            ['createdAt', 'DESC']
+          ]
+     })
+    .then((articles) => res.status(200).json({articles}))
+    .catch((error) => res.status(503).json({error}))
 }

@@ -1,7 +1,7 @@
 <template>
     
     <div v-if="!published" class="container">
-        <h2 class="my-4">Soumettez votre article</h2>
+        <h2 class="my-4">Publiez votre article</h2>
 
         <div class="form-group-mb-5">
             <label for="title">Titre</label>
@@ -11,7 +11,7 @@
             <label class="mt-4" for="content">Contenu</label>
             <textarea id="content" class="form-control" v-model="content"></textarea>
         </div>
-        <button @click.prevent="submit()" class="btn btn-primary mt-4">Soumettre</button>
+        <button @click.prevent="submit()" class="btn btn-primary mt-4">Publier</button>
     </div>
     <div v-else class="container">
         <h2 class="my-4">Article publié !</h2>
@@ -56,6 +56,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
+
 
 </style>

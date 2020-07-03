@@ -20,11 +20,12 @@ const article = db.define("articles", {
         type: Sequelize.STRING,
         allowNull: false
     },
+    author_name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     createdAt: {
         type: Sequelize.DATE,
-        // get: function() {
-        //     return moment.utc(this.getDataValue('createdAt')).format('YYYY-MM-DD')
-        // },
         allowNull: false
         
     }

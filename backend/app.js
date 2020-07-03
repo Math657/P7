@@ -5,12 +5,9 @@ const userRoutes = require('./routes/user')
 const articlesRoutes = require('./routes/articles')
 const commentsRoutes = require('./routes/comments')
 const cookieParser = require('cookie-parser')
-var cors = require('cors')
 require('dotenv').config()
 
 const app = express()
-
-// const path = require('path')
 
 const db = require('./config/database')
 
@@ -32,17 +29,10 @@ app.use((req, res, next) => {
 })
 
 
-//app.use(cors())
-
-//  credentials: true, origin: 'localhost:8080'
-
 app.use(cookieParser())
 
 app.use(bodyParser.json())
 
-// app.post('/', (req, res) => {
-//     res.status(200).send()
-// })
 app.use('/api/auth', userRoutes)
 app.use('/api/auth', articlesRoutes)
 app.use('/api/auth', commentsRoutes)
