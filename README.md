@@ -2,7 +2,10 @@
 
 # Charger la DB
 
-SOURCE C:/{path}/myDB.sql
+mysql -u admin -p groupomania
+pass: admin
+
+SOURCE C:/{path}/myDB.sql;
 
 # Démarrer le front (dans le dossier frontend)
 
