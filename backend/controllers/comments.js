@@ -37,3 +37,9 @@ exports.createComment = (req, res) => {
     })
     .catch((error) => res.status(502).json({error}))
 }
+
+exports.deleteOneComment = (req, res) => {
+    comment.destroy({ where : { comment_id: req.params.id }})
+    .then(() => res.status(200).json({message: 'Commentaire supprimé!'}))
+    .catch(error => res.status(503).json(error))
+}

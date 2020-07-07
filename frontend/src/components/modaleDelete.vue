@@ -27,8 +27,7 @@ export default {
     methods: {
         deleteProfil(){
             this.$http.delete(`http://localhost:3000/api/auth/profil/${this.userId}`)
-            .then(response => {
-                console.log(response)
+            .then(() => {
                 localStorage.clear()
                 sessionStorage.clear()
                 this.$store.dispatch('logOut')

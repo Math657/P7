@@ -12,6 +12,7 @@
                             </h6>
                             <h5>{{ comment.content }}</h5>  
                         </div>
+                        <button v-if="$store.state.isAdmin === true" @click="deleteCom(comment.comment_id, i)" class="btn btn-danger mt-3">Supprimer le commentaire</button>
                     </li>
                 </ul>
 
@@ -51,8 +52,8 @@ export default {
         this.$http.get(`http://localhost:3000/api/auth/comments/${this.artTitle}`)
         .then(response => {
             for (let com of response.data.comment) {          
-                        this.allComments.push(com)   
-                    }
+                    this.allComments.push(com)   
+                }
         })
         .catch((error) => {
             console.log(error)
@@ -81,6 +82,15 @@ export default {
             else {
                 console.log('Votre commentaire ne peut pas être vide!')
             }
+        },
+        deleteCom(commentId, i){
+            this.$http.delete(`http://localhost:3000/api/auth/deleteComment/${commentId}`)
+            .then(() => {
+                this.allComments.splice(i, 1)
+            })
+            .catch(function (error) {
+                console.log(error)
+            })  
         }
     }
 }

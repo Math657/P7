@@ -5,11 +5,13 @@
                 <p>
                     {{ articleUnique.content }}
                 </p>
+
                 <p class="details my-4">
                     Publié par <router-link :to="`/user-profil/${articleUnique.author_id}`" data-toggle="tooltip" title="Voir le profil"><span class="author">{{articleUnique.author_name}}</span></router-link>, le 
                     <span class="date">{{moment(articleUnique.createdAt).format("Do MMMM YYYY")}} à </span>
                     <span class="date">{{moment(articleUnique.createdAt).format("LT")}}h</span>
                 </p>
+                <button v-if="$store.state.isAdmin === true" v-on:click="deleteArt()" class="btn btn-danger mb-4">Supprimer l'article</button>
             </div>
 
             <div class="card">
@@ -33,16 +35,27 @@ export default {
     mounted(){
         this.$http.get(`http://localhost:3000/api/auth/home/${this.title}`)
             .then(response => {
-                    this.articleUnique = response.data.article,
-                    this.userId = response.data.article.author_id
+                this.articleUnique = response.data.article,
+                this.userId = response.data.article.author_id
             })
             .catch(function (error) {
-                  console.log(error)
+                console.log(error)
             })                
+    }, 
+    methods: {
+        deleteArt(){
+            this.$http.delete(`http://localhost:3000/api/auth/deleteArticle/${this.title}`)
+            .then(() => {
+                this.$router.push('/home')
+            })
+            .catch(function (error) {
+                console.log(error)
+            })  
+        }
     },
     components: {
         comments
-    }
+    } 
 }
 </script>
 

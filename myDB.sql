@@ -12,13 +12,15 @@ CREATE TABLE Users (
     firstname VARCHAR(40) NOT NULL,
     password VARCHAR(70),
     status VARCHAR(30),
+    type VARCHAR(30),
     PRIMARY KEY (id)) 
 ENGINE=INNODB;
 
-INSERT INTO Users (email, lastname, firstname, password, status)
-VALUES ('ta@gmail.com', 'Dupont', 'Jami', '123', 'Actif'),
-('max@gmail.com', 'Rousseau', 'Maxime', '123', 'Actif'),
-('super@gmail.com', 'Berger', 'Toto', 'password', 'Actif');
+INSERT INTO Users (email, lastname, firstname, password, status, type)
+VALUES ('jami@gmail.com', 'Dupont', 'Jami', '$2b$10$/pIt.3Kk.RnaUj35wt6SFuQLvyKBCWBP9S2E/Ts99C0INqZ6q111O', 'Actif', 'user'),
+('maxime@gmail.com', 'Rousseau', 'Maxime', '$2b$10$/pIt.3Kk.RnaUj35wt6SFuQLvyKBCWBP9S2E/Ts99C0INqZ6q111O', 'Actif', 'user'),
+('toto@gmail.com', 'Berger', 'Toto', '$2b$10$/pIt.3Kk.RnaUj35wt6SFuQLvyKBCWBP9S2E/Ts99C0INqZ6q111O', 'Actif', 'user'),
+('admin@gmail.com', 'Admin', 'Chargé de communication', '$2b$10$b85Z69bXIAMjSuwx6//yL.b9/NqtoyC23FKQwpiywXSS4zbtn/mmq', 'Actif', 'admin');
 
 
 
@@ -39,7 +41,7 @@ ENGINE=INNODB;
 INSERT INTO Articles (title, content, author_name, author_id)
 VALUES ('Article phare', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Jami Dupont', 1),
 ('Un titre original', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Maxime Rousseau', 2),
-('Nouveautés du jour', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.', 'Jami Dupont', 1),
+('Nouveautés du jour', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.', 'Toto Berger', 3),
 ('Un autre article', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.', 'Jami Dupont', 2);
 
 
@@ -61,17 +63,10 @@ ENGINE=INNODB;
 INSERT INTO Comments (author_id, article_id, content, author_name)
 VALUES (1, 2, 'Article très intéressant!', 'Jami Dupont'),
 (2, 1, 'Un commentaire!', 'Maxime Rousseau'),
-(1, 1, 'Super article!', 'Jami Dupont');
-
-CREATE USER 'manager'@'localhost' IDENTIFIED BY '7cookie7';
-
-GRANT ALL
-ON groupomania.Articles
-TO 'manager'@'localhost' IDENTIFIED BY '7cookie7';
-
-GRANT ALL
-ON groupomania.Comments
-TO 'manager'@'localhost' IDENTIFIED BY '7cookie7';
+(3, 1, 'Génial!', 'Toto Berger'),
+(2, 2, 'Pertinent...', 'Maxime Rousseau'),
+(1, 3, 'Un peu court', 'Jami Dupont'),
+(3, 2, 'Intéressant', 'Toto Berger');
 
 
 -- SOURCE C:/Users/manu_/Desktop/openclassrooms/P7/myDB.sql

@@ -28,6 +28,10 @@ const user = db.define("Users", {
      status: {
          type: Sequelize.STRING,
          allowNull: false
+     },
+     type: {
+         type: Sequelize.STRING,
+         allowNull: false
      }
 }, {
     freezeTableName: true,

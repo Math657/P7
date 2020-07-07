@@ -17,7 +17,8 @@ exports.signup = (req, res) => {
                     lastname: req.body.lastname,
                     firstname: req.body.firstname,
                     password: hash,
-                    status: "Actif"
+                    status: "Actif",
+                    type: 'user'
                 })
                 .then(userCreated => {
                     let token = jwt.sign(
@@ -63,9 +64,18 @@ exports.login = (req, res) => {
     .catch(error => res.status(500).json({error}))
 }
 
+
+
 exports.getOneUser = (req, res) => {
     user.findOne({ where: {id: req.params.id }})
-    .then((user) => res.status(200).json({user}))
+    .then(user => {
+        if (user.type === 'admin') {
+            return res.status(200).json({user, isAdmin: true})
+        }
+        else {
+            return res.status(200).json({user, isAdmin: false})
+        }
+    })
     .catch((error) => res.status(503).json({error}))
 }
 

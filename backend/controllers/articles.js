@@ -1,5 +1,6 @@
 const article = require('../models/article')
 const user = require('../models/user')
+const comment = require('../models/comment')
 
 exports.getAllArticles = (req, res) => {
     article.findAll({order: [
@@ -50,4 +51,18 @@ exports.getUserArticles = (req, res) => {
      })
     .then((articles) => res.status(200).json({articles}))
     .catch((error) => res.status(503).json({error}))
+}
+
+exports.deleteOneArticle = (req, res) => {
+    article.findOne({ where : { title: req.params.title }})
+    .then(article => {
+        comment.destroy({ where : { article_id: article.article_id }})
+        .then(() => {
+            article.destroy({ where : { title: req.params.title }})
+            .then(() => res.status(200).json({message: 'Article supprimé!'}))
+            .catch(error => res.status(503).json(error))  
+        })
+        .catch(error => res.status(504).json(error))
+    })
+    .catch((error) => res.status(503).json({error}))       
 }

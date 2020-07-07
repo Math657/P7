@@ -2,8 +2,8 @@
 
 # Charger la DB
 
-`mysql -u admin -p groupomania`
-pass: admin
+`mysql -u root -p groupomania`
+pass: root
 
 `SOURCE C:/{path}/myDB.sql;`
 
@@ -18,3 +18,15 @@ pass: admin
 # L'application devrait être accessible sur :
 
 http://localhost:8080/
+
+
+
+# Logins
+
+Admin account // password (permet de modérer)
+`admin@gmail.com`  //  `admin`
+
+User account // password
+`jami@gmail.com`  //  `123`
+`maxime@gmail.com`  //  `123`
+`toto@gmail.com'`  //  `123`

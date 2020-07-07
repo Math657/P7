@@ -12,21 +12,35 @@ export default new Vuex.Store({
 })],
 
   state: {
-    isLogged: false
+    isLogged: false,
+    isAdmin: false
   },
   mutations: {
         LOGGED_IN(state) {
             state.isLogged = true
-    },
+        },
         LOGGED_OUT(state) {
             state.isLogged = false
+            state.isAdmin = false
+        },
+        IS_ADMIN(state) {
+            state.isAdmin = true
+        },
+        IS_NOT_ADMIN(state) {
+            state.isAdmin = false
         }
   },
   actions: {
     checkIfLogged({ commit }) {
         Axios.get(`http://localhost:3000/api/auth/profil/${localStorage.getItem('userID')}`)
         .then(response => {
-            if (response) {
+            if (response.data.isAdmin === true) {
+                commit('IS_ADMIN')
+                commit('LOGGED_IN')
+                router.push('/home')
+            }
+            else if (response) {
+                commit('IS_NOT_ADMIN')
                 commit('LOGGED_IN')
                 router.push('/home')
             }
@@ -35,7 +49,7 @@ export default new Vuex.Store({
             console.log(error)
         }) 
     },
-    logOut({commit}) {
+    logOut({ commit }) {
         commit('LOGGED_OUT')
     }
   },
