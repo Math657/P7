@@ -1,7 +1,7 @@
 const article = require('../models/article')
 const user = require('../models/user')
 
-exports.getAllArticles = (res) => {
+exports.getAllArticles = (req, res) => {
     article.findAll({order: [
         ['createdAt', 'DESC']
       ]})

@@ -2,18 +2,18 @@
 
 # Charger la DB
 
-mysql -u admin -p groupomania
+`mysql -u admin -p groupomania`
 pass: admin
 
-SOURCE C:/{path}/myDB.sql;
+`SOURCE C:/{path}/myDB.sql;`
 
 # Démarrer le front (dans le dossier frontend)
 
-npm run serve
+`npm run serve`
 
 # Démarrer le back (dans le dossier backend)
 
-npm start
+`npm start`
 
 # L'application devrait être accessible sur :
 
