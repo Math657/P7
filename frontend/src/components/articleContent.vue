@@ -11,7 +11,8 @@
                     <span class="date">{{moment(articleUnique.createdAt).format("Do MMMM YYYY")}} à </span>
                     <span class="date">{{moment(articleUnique.createdAt).format("LT")}}h</span>
                 </p>
-                <button v-if="$store.state.isAdmin === true" v-on:click="deleteArt()" class="btn btn-danger mb-4">Supprimer l'article</button>
+                <button v-if="$store.state.isAdmin === true" @click="deleteArt()" class="btn btn-danger mb-4">Supprimer l'article</button>
+                <button v-if="userId == articleUnique.author_id && $store.state.isAdmin != true" @click="deleteArt()" class="btn btn-danger mb-4">Supprimer mon article</button>
             </div>
 
             <div class="card">
@@ -28,15 +29,15 @@ export default {
     data(){
         return {
             title: this.$route.params.title,
-            articleUnique: []
+            articleUnique: [],
+            userId: localStorage.getItem('userID')
             
         }
     },
     mounted(){
         this.$http.get(`http://localhost:3000/api/auth/home/${this.title}`)
             .then(response => {
-                this.articleUnique = response.data.article,
-                this.userId = response.data.article.author_id
+                this.articleUnique = response.data.article
             })
             .catch(function (error) {
                 console.log(error)

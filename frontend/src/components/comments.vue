@@ -12,7 +12,8 @@
                             </h6>
                             <h5>{{ comment.content }}</h5>  
                         </div>
-                        <button v-if="$store.state.isAdmin === true" @click="deleteCom(comment.comment_id, i)" class="btn btn-danger mt-3">Supprimer le commentaire</button>
+                        <button v-if="$store.state.isAdmin === true" @click="deleteCom(comment.comment_id, i)" class="btn btn-danger mt-2">Supprimer le commentaire</button>
+                        <button v-if="userId == comment.author_id && $store.state.isAdmin != true" @click="deleteCom(comment.comment_id, i)" class="btn btn-danger mt-2">Supprimer mon commentaire</button>
                     </li>
                 </ul>
 
@@ -29,6 +30,7 @@
         </div>
 
         <div class="published my-3" v-if="published">Commentaire publié!</div>
+        <div class="deleted my-3" v-if="deleted && !published">Commentaire supprimé</div>
 
     </div>
 </template>
@@ -42,10 +44,12 @@ export default {
         return {
             comments: false,
             revele: false,
+            published: false,
+            deleted: false,
             content: "",
             allComments: [],
-            userId: localStorage.getItem('userID'),
-            published: false
+            userId: localStorage.getItem('userID')
+            
         }
     },
     mounted(){
@@ -84,9 +88,12 @@ export default {
             }
         },
         deleteCom(commentId, i){
+            let self = this
             this.$http.delete(`http://localhost:3000/api/auth/deleteComment/${commentId}`)
             .then(() => {
                 this.allComments.splice(i, 1)
+                self.published = false
+                self.deleted = true
             })
             .catch(function (error) {
                 console.log(error)
